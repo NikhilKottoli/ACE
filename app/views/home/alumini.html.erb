@@ -1,0 +1,97 @@
+<%= render 'partials/navbar'%>
+<div class="container py-3">
+  <main>
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Alumini Portal</h1>
+        <p class="lead text-body-secondary">Supporting Your Alma Mater: Making a Difference Beyond Graduation</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2" id="rzp-button1">Donate to ACE</a>
+          <a href="#" class="btn btn-secondary my-2">Donate to NITK</a>
+        </p>
+      </div>
+    </div>
+  </section>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Conduct a seminar</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$500<small class="text-body-secondary fw-light">/seminar</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Skill Sharing</li>
+              <li>Experience Sharing</li>
+              <li>Access to industry resources</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Schedule a seminar</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Project Collaboration</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$100<small class="text-body-secondary fw-light">/project</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Skill Sharing</li>
+              <li>Impactful Projects</li>
+              <li>Networking Opportunities</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal">Provide mentorship</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$10<small class="text-body-secondary fw-light">/session</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Technical Support</li>
+              <li>Networking Opportunities</li>
+              <li>Carrer guidance</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <br>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "L3Abn1jtCbhZD0JlbfnZfFKl", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp", //your business name
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        "name": "Gaurav Kumar", //your customer's name
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000" //Provide the customer's phone number for better conversion rates 
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+<%= render 'partials/footer'%>

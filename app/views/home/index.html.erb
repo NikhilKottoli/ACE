@@ -1,133 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title><%= content_for(:title) || "ACE - NITK" %></title>
+<%= render 'partials/navbar'%>
+<style>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+.levitate-body:after {
+  content: '_______________________________________';
+  margin-left: 60px;
+  color: #3D3B40;
+  -webkit-filter: blur(3px);
+}
 
-    <%= yield :head %>
+.logo {
+  border-radius: 50%;
+  height: 50%;
+  width: 50%;
+  background-color: #a0c2ce;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  margin-left: 100px;
+  overflow: hidden;
+  display: inline-block;
+}
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+.levitate i {
+  color: #fff;
+  font: 700 50px Tahoma;
+  text-shadow: 0px 0px #819da6, 1px 1px #819da6, 2px 2px #819da6, 3px 3px #819da6, 4px 4px #819da6, 5px 5px #819da6, 6px 6px #819da6, 7px 7px #819da6, 8px 8px #819da6, 9px 9px #819da6, 10px 10px #819da6, 11px 11px #819da6, 12px 12px #819da6, 13px 13px #819da6, 14px 14px #819da6, 15px 15px #819da6, 16px 16px #819da6, 17px 17px #819da6, 18px 18px #819da6, 19px 19px #819da6, 20px 20px #819da6, 21px 21px #819da6, 22px 22px #819da6, 23px 23px #819da6, 24px 24px #819da6, 25px 25px #819da6, 26px 26px #819da6, 27px 27px #819da6, 28px 28px #819da6;
+}
 
-    <style>
-      body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 0;
-      }
+.levitate {
+  -webkit-animation-name: levitate;
+  -webkit-animation-duration: 2.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out ease-in-out;
+}
 
-      header {
-        background-color: #009688;
-        color: white;
-        padding: 20px 0;
-        text-align: center;
-      }
+@-webkit-keyframes levitate {
+  from {
+    -webkit-transform: translate(0, 0px);
+  }
+  45% {
+    -webkit-transform: translate(0, 20px);
+  }
+  to {
+    -webkit-transform: translate(0, -0px);
+  }
+}
+</style>
+<main class="container">
+  <div class="mb-4 rounded text-body-emphasis bg-body-secondary">
+     <div class="row mb-4">
+  <!-- Content Column -->
+  <div class="col-lg-6">
+    <div class="p-4 p-md-5 rounded text-body-emphasis bg-body-secondary">
+      <h1 class="display-4 fst-italic">An association of computer engineers at NITK</h1>
+      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+      <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Follow us on social media...</a></p>
+    </div>
+  </div>
+  <!-- Image Column -->
+  <div class="col-lg-6">
+    <div class="levitate-body">
+  <div class="levitate">
+    <div class="logo">
+        <%= image_tag 'ace.png', width:'100%;' %>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
 
-      h1 {
-        font-size: 3rem;
-        margin: 0;
-      }
+  </div>
 
-      p {
-        font-size: 1.2rem;
-        margin-top: 10px;
-      }
-
-      .main-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: calc(100vh - 120px);
-        background-color: #ffffff;
-        padding: 20px;
-      }
-
-      .card {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        max-width: 600px;
-        text-align: center;
-      }
-
-      .card h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-      }
-
-      .card p {
-        font-size: 1.1rem;
-        color: #555;
-        margin-bottom: 25px;
-      }
-
-      .cta-button {
-        background-color: #00796b;
-        color: white;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .cta-button:hover {
-        background-color: #004d40;
-      }
-
-      footer {
-        background-color: #009688;
-        color: white;
-        padding: 15px 0;
-        text-align: center;
-      }
-
-      footer a {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 1.1rem;
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <h1>Welcome to ACE NITK</h1>
-      <p>Association of Computer Engineers, NITK</p>
-    </header>
-
-    <div class="main-content">
-      <div class="card">
-        <h2>Empowering the Next Generation of Engineers</h2>
-        <p>Join ACE to be a part of exciting events, workshops, and networking opportunities that will help you grow as an engineer!</p>
-        <a href="/join" class="cta-button">Join Us</a>
+  <div class="row mb-2" id="vision">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">Vision is the mission</strong>
+          <h3 class="mb-0">Vision</h3>
+          <div class="mb-1 text-body-secondary">Nov 12</div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+            
+            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <%= image_tag 'vision.jpg', width:'200px', height:'250px' %>
+        </div>
       </div>
     </div>
+    <div class="col-md-6" id="mission">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success-emphasis">Vision is the mission</strong>
+          <h3 class="mb-0">Mission</h3>
+          <div class="mb-1 text-body-secondary">Nov 11</div>
+          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+            
+            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <%= image_tag 'mission.jpg', width:'200px', height:'250px' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <footer>
-      <p>&copy; <%= Time.now.year %> ACE - NITK. All rights reserved.</p>
-      <p>
-        <a href="/about">About Us</a> |
-        <a href="/contact">Contact</a> |
-        <a href="/events">Events</a>
-      </p>
-    </footer>
-  </body>
-</html>
+  <div class="row g-5" id="announcements">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        Events conducted by us year long...
+      </h3>
+
+<% Event.all.each do |event| %>
+      <div class="col-md-12">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis"><%= event.slogan%></strong>
+          <h3 class="mb-0"><%= event.title %></h3>
+          <div class="mb-1 text-body-secondary"><%= event.eventdate %></div>
+          <p class="card-text mb-auto"><%= event.description %></p>
+          <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+            
+            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <%= image_tag event.thumbnail, width:'200px' ,height:'250px' %>
+        </div>
+      </div>
+      </div>
+    </div>
+<% end %>
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 4rem;">
+        <div>
+          <h4 class="fst-italic">Announcements</h4>
+          <ul class="list-unstyled">
+        <% Announcement.all.each do |announce| %>
+  <li>
+    <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-start py-3 link-body-emphasis text-decoration-none border-top" href="#" data-bs-toggle="modal" data-bs-target="#announcementModal<%= announce.id %>">
+      <% if announce.image.attached? %>
+        <%= image_tag announce.image, style: "width: 100px; height: 2%;" %>
+      <% else %>
+        <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+      <% end %>
+      <div class="col-lg-8">
+        <h6 class="mb-0"><%= announce.title %></h6>
+        <% truncated_description = truncate(announce.description, length: 100) %>
+        <small class="text-body-secondary"><%= truncated_description %></small>
+      </div>
+    </a>
+  </li>
+
+<% end %>
+
+          </ul>
+        </div>
+
+
+      <div class="position-sticky" style="top: 2rem;">
+
+        <div>
+        <% @recent_blogs = Blog.order(created_at: :desc).limit(3) %>
+          <h4 class="fst-italic">Blogs</h4>
+          <ul class="list-unstyled">
+          <% @recent_blogs.each do |blog| %>
+            <li>
+              <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
+                <%= image_tag blog.thumbnail, width:'100px', height:'100px' %>
+                <div class="col-lg-8">
+                  <h6 class="mb-0"><%= blog.title %></h6>
+                  <small class="text-body-secondary"><%= blog.description %></small>
+                </div>
+              </a>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+        </div>
+
+</main>
+
+<div class="container" id="team">
+<h3 class="pb-4 mb-4 fst-italic border-bottom d-flex justify-content-center align-items-center">
+        Core Team
+      </h3>
+      </div>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+      <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+        </div>
+        <br>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+      <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+        </div>
+        <br>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+      <div class="col d-flex justify-content-center align-items-center">
+          <div class="card shadow-sm">
+            <%= render 'partials/team_card' %>
+          </div>
+        </div>
+        </div>
+        <br>
+    </div>
+<%= render 'partials/footer'%>

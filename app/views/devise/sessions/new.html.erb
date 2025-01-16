@@ -1,0 +1,142 @@
+<style>
+/* importing and defining the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+.font-jost {
+  font-family: 'Jost', sans-serif;
+}
+
+.sizing{
+  height:30rem;
+}
+
+.colors{
+  background-color: transparent;
+}
+
+.whole {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* styling cards */
+.card{
+  display: absolute;
+  position: relative;
+  width:100%;
+  height: auto;
+}
+
+#card-img {
+  width: 60%;
+}
+
+#card-form {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+
+#logo_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#logo_div {
+  width: 20%;
+}
+#logo_div img {
+  width: 100%;
+}
+
+.mobile_title {
+  display: none;
+}
+
+.background{
+  background: linear-gradient(rgba(65, 65, 65, 0.362), rgba(94, 94, 94, 0.08)) ,url(https://bl-i.thgim.com/public/news/w78508/article66656932.ece/alternates/LANDSCAPE_1200/NITK.jpg);
+  background-position: center;
+  border-radius: 7px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  padding: auto;
+}
+.background h3 {
+}
+.background h2 {
+  color: aliceblue;
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width:870px) {
+  .card {
+    padding: 1em 0;
+    height: auto!important; /*added becuase card height was less and casuing overflow */
+    margin: 4em auto;
+  }
+  #card-img {
+    display: none;
+  }
+  #card-form {
+    width: 100%;
+    margin: auto;
+  }
+  #card-form {
+    width: 90%;
+    margin: auto;
+    height: auto;
+  }
+  .mobile_title {
+    display: block;
+  }
+}
+</style>
+<div class="whole">
+  <div class="card mb-3 sizing" style="max-width: 66rem; height: 70%">
+      <h2 class='fw-bold text-center mobile_title'>National Institute of Technology Karnataka</h2>
+      <h3 class='text-body-secondary text-center mobile_title'>Faculty Recruitment Portal</h3>
+    <div class="row g-0" style="height: 100%">
+      <div class="col-md-5 background" id='card-img'>
+        <h2 class='fw-bold'>Association of Computer Engineers</h2>
+        <h3 class=''>National Institute Of Technology Karnataka</h3>
+      </div>
+      <div class="col-md-7" id='card-form'>
+        <div class="card-body centering">
+          <div class="centering">
+            <div id="logo_text">
+              <div id='logo_div'><%= image_tag "ace.png" %></div>
+              <p class="text-body-secondary">Log in only for NITK CSE students and faculty</p>
+            </div>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field mb-3"">
+              <%= f.label :email, for:"email_input", class:"form-label" %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"email_input", placeholder:'Enter your email'   %>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+
+            <div class="field mb-3">
+              <%= f.label :password, for:"password_input", class:"form-label" %><br />
+              <%= f.password_field :password, autocomplete: "current-password", class:"form-control", id:"password_input", placeholder:'Enter your password'%>
+              <%= link_to "Forgot your password?", new_password_path(resource_name), class:"text-end" %>
+            </div>
+
+            <div class="actions">
+              <div class="d-grid">
+                <%= f.submit "Log in", class:"btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

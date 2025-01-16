@@ -1,0 +1,83 @@
+<%= render 'partials/navbar' %>
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Digital Library</h1>
+        <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <p>
+                  <div id="search-div">
+            <div class="d-flex" role="search">
+                <input class="form-control me-2 font-quicksand" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+            </div>
+        </div>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% Library.all.each do |book| %>
+        <div class="col books">
+          <div class="card shadow-sm">
+          <% if book.thumbnail.attached? %>
+            <%= image_tag book.thumbnail,  width:"100%", height:"250" %>
+          <% else %>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <% end %>
+            <div class="card-body">
+             <b><p class="card-text"><%= book.title %></p></b>
+             <br>
+              <% truncated_description = truncate(book.description, length: 150) %>
+              <small class="text-body-secondary"><%= truncated_description %></small>
+              <br><br>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <%= link_to "Read", rails_blob_path(book.book, disposition: :inline), class: "btn btn-sm btn-outline-secondary" %>
+                  <%= link_to "Download", rails_blob_path(book.book, disposition: :attachment), class: "btn btn-sm btn-outline-secondary" %>
+                </div>
+                <small class="text-body-secondary"><%= book.pages %> pages</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+        const searchInput = document.getElementById("searchInput");
+
+        // store name elements in array-like object
+        const namesFromDOM = document.getElementsByClassName("books");
+
+        // listen for user events
+        searchInput.addEventListener("keyup", (event) => {
+            const { value } = event.target;
+
+            // get user search input converted to lowercase
+            const searchQuery = value.toLowerCase();
+
+            let i = 0;
+            for (const nameElement of namesFromDOM) {
+                // store name text and convert to lowercase
+                let name = nameElement.textContent.toLowerCase();
+
+                // compare current name to search input
+                if (name.includes(searchQuery)) {
+                    // found name matching search, display it
+                    nameElement.style.display = "block";
+                    i++;
+                } else {
+                    // no match, don't display name
+                    nameElement.style.display = "none";
+                }
+            }
+        });
+</script>

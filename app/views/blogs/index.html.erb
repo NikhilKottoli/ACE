@@ -1,0 +1,67 @@
+<%= render 'partials/navbar' %>
+  <style>
+    .fixed-bottom-right {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 100px;
+    }
+  </style>
+<div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        Welcome to ACE Blogs
+      </h3>
+        <% Blog.all.each do |blog| %>
+      <div class="col-md-12">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis"><%= blog.readtime%> min</strong>
+          <h3 class="mb-0"><%= blog.title %></h3>
+          <div class="mb-1 text-body-secondary"><%= blog.created_at.strftime("%B %d, %Y") %></div>
+          <p class="card-text mb-auto"><%= blog.description %></p>
+          <%= link_to 'Read', blog_path(blog), class:"icon-link gap-1 icon-link-hover stretched-link"%>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+        <% if blog.thumbnail.attached? %>
+          <%= image_tag blog.thumbnail, width:'200px' ,height:'250px' %>
+        <% end %>
+        </div>
+      </div>
+      </div>
+
+<% end %>
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-body-tertiary rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+        </div>
+
+        <div>
+        <% @recent_blogs = Blog.order(created_at: :desc).limit(3) %>
+          <h4 class="fst-italic">Recent blogs</h4>
+          <ul class="list-unstyled">
+          <% @recent_blogs.each do |blog| %>
+            <li>
+              <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
+                <%= image_tag blog.thumbnail, width:'100px', height:'100px' %>
+                <div class="col-lg-8">
+                  <h6 class="mb-0"><%= blog.title %></h6>
+                  <small class="text-body-secondary"><%= blog.description %></small>
+                </div>
+              </a>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<%= link_to "Write a blog", "/blogs/new", class: "btn btn-secondary btn-floating fixed-bottom-right", id: "writeBlogLink" %>
+<%= render 'partials/footer' %>

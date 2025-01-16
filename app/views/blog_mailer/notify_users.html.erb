@@ -1,0 +1,18 @@
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+
+  <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <h2>New Blog Post Notification</h2>
+    <p>Hello there!</p>
+    <p>We are excited to inform you about our latest blog post:</p>
+    <div style="background-color: #f9f9f9; padding: 10px; border-radius: 5px;">
+      <h3 style="margin-top: 0;"><%= @blog.title %></h3>
+      <p><%= @blog.description %></p>
+      <%= image_tag @blog.thumbnail %>
+      <p style="font-size: 12px; color: #666;">Author: <%= @blog.writer_name %></p>
+    </div>
+    <p>Visit our website to read the full post: </p>
+    <p>Stay tuned for more updates!</p>
+    <p>Best regards,<br>ACE NITK</p>
+  </div>
+
+</body>

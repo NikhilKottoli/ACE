@@ -15,6 +15,6 @@ class SubscriptionsController < ApplicationController
     private
   
     def subscription_params
-      params.permit(:email)
+      params.permit(:email,:commit)
     end
-  end  
+  end

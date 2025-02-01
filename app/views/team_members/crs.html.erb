@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current CRs</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .container {
+      padding: 20px;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
+    .team-member {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 15px;
+    }
+
+    .team-member img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    .info {
+      flex-grow: 1;
+    }
+
+    .info h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .info p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .info .role {
+      font-weight: bold;
+      color: #0044cc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Current CRs
+  </header>
+
+  <div class="container">
+    <% @team_members.each do |member| %>
+      <div class="team-member">
+        <img src="<%= member.image %>" alt="<%= member.name %>">
+        <div class="info">
+          <h3><%= member.name %></h3>
+          <p><span class="role"><%= member.role %></span></p>
+          <p>Email: <%= member.email %></p>
+          <p>Joined: <%= member.created_at.strftime("%b %d, %Y") %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <footer>
+    &copy; 2025 ACE Team
+  </footer>
+
+</body>
+</html>

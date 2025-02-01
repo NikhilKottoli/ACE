@@ -1,6 +1,94 @@
-<%= render 'partials/navbar'%>
 <style>
 
+.ace-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .content-section {
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #2d3748;
+      font-style: italic;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-link {
+      color: #2d3748;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: #4299e1;
+    }
+
+    .logo-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-container {
+      width: 100%;
+      max-width: 400px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .logo {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      .header-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .content-section {
+        text-align: center;
+      }
+      
+      .logo-container {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
 .levitate-body:after {
   content: '_______________________________________';
   margin-left: 60px;
@@ -47,30 +135,20 @@
 }
 </style>
 <main class="container">
-  <div class="mb-4 rounded text-body-emphasis bg-body-secondary">
-     <div class="row mb-4">
-  <!-- Content Column -->
-  <div class="col-lg-6">
-    <div class="p-4 p-md-5 rounded text-body-emphasis bg-body-secondary">
-      <h1 class="display-4 fst-italic">An association of computer engineers at NITK</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Follow us on social media...</a></p>
+  <div class="ace-container">
+    <div class="header-grid">
+      <div class="content-section">
+        <h1 class="title">An association of computer engineers at NITK</h1>
+        <p class="subtitle">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
+        <p><a href="#" class="social-link">Follow us on social media...</a></p>
+      </div>
+        <div class="logo-section">
+          <div class="logo-container">
+            <%= image_tag 'NewAce.png' %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <!-- Image Column -->
-  <div class="col-lg-6">
-    <div class="levitate-body">
-  <div class="levitate">
-    <div class="logo">
-        <%= image_tag 'ace.png', width:'100%;' %>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-
-  </div>
-
   <div class="row mb-2" id="vision">
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -80,15 +158,15 @@
           <div class="mb-1 text-body-secondary">Nov 12</div>
           <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
           <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-            
             <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
           </a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <%= image_tag 'vision.jpg', width:'200px', height:'250px' %>
+          <%= image_tag 'vision.jpg', width: '200px', height: '250px' %>
         </div>
       </div>
     </div>
+
     <div class="col-md-6" id="mission">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
@@ -97,12 +175,11 @@
           <div class="mb-1 text-body-secondary">Nov 11</div>
           <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
           <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-            
             <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
           </a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <%= image_tag 'mission.jpg', width:'200px', height:'250px' %>
+          <%= image_tag 'mission.jpg', width: '200px', height: '250px' %>
         </div>
       </div>
     </div>
@@ -114,138 +191,74 @@
         Events conducted by us year long...
       </h3>
 
-<% Event.all.each do |event| %>
-      <div class="col-md-12">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary-emphasis"><%= event.slogan%></strong>
-          <h3 class="mb-0"><%= event.title %></h3>
-          <div class="mb-1 text-body-secondary"><%= event.eventdate %></div>
-          <p class="card-text mb-auto"><%= event.description %></p>
-          <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-            
-            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
-          </a>
+      <% Event.all.each do |event| %>
+        <div class="col-md-12">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary-emphasis"><%= event.slogan %></strong>
+              <h3 class="mb-0"><%= event.title %></h3>
+              <div class="mb-1 text-body-secondary"><%= event.eventdate %></div>
+              <p class="card-text mb-auto"><%= event.description %></p>
+              <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+              </a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <% if event.thumbnail.attached? %>
+                <%= image_tag url_for(event.thumbnail), width: '200px', height: '250px' %>
+              <% else %>
+                <%= image_tag "NewAce.png", width: '200px', height: '250px' %> <!-- Placeholder image -->
+              <% end %>
+            </div>
+          </div>
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <%= image_tag event.thumbnail, width:'200px' ,height:'250px' %>
-        </div>
-      </div>
-      </div>
+      <% end %>
     </div>
-<% end %>
+
     <div class="col-md-4">
       <div class="position-sticky" style="top: 4rem;">
         <div>
           <h4 class="fst-italic">Announcements</h4>
           <ul class="list-unstyled">
-        <% Announcement.all.each do |announce| %>
-  <li>
-    <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-start py-3 link-body-emphasis text-decoration-none border-top" href="#" data-bs-toggle="modal" data-bs-target="#announcementModal<%= announce.id %>">
-      <% if announce.image.attached? %>
-        <%= image_tag announce.image, style: "width: 100px; height: 2%;" %>
-      <% else %>
-        <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
-      <% end %>
-      <div class="col-lg-8">
-        <h6 class="mb-0"><%= announce.title %></h6>
-        <% truncated_description = truncate(announce.description, length: 100) %>
-        <small class="text-body-secondary"><%= truncated_description %></small>
-      </div>
-    </a>
-  </li>
-
-<% end %>
-
+            <% Announcement.all.each do |announce| %>
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-start py-3 link-body-emphasis text-decoration-none border-top" href="#" data-bs-toggle="modal" data-bs-target="#announcementModal<%= announce.id %>">
+                  <% if announce.image.attached? %>
+                    <%= image_tag announce.image, style: "width: 100px; height: 2%;" %>
+                  <% else %>
+                    <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+                  <% end %>
+                  <div class="col-lg-8">
+                    <h6 class="mb-0"><%= announce.title %></h6>
+                    <% truncated_description = truncate(announce.description, length: 100) %>
+                    <small class="text-body-secondary"><%= truncated_description %></small>
+                  </div>
+                </a>
+              </li>
+            <% end %>
           </ul>
         </div>
-
+      </div>
 
       <div class="position-sticky" style="top: 2rem;">
-
         <div>
-        <% @recent_blogs = Blog.order(created_at: :desc).limit(3) %>
+          <% @recent_blogs = Blog.order(created_at: :desc).limit(3) %>
           <h4 class="fst-italic">Blogs</h4>
           <ul class="list-unstyled">
-          <% @recent_blogs.each do |blog| %>
-            <li>
-              <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                <%= image_tag blog.thumbnail, width:'100px', height:'100px' %>
-                <div class="col-lg-8">
-                  <h6 class="mb-0"><%= blog.title %></h6>
-                  <small class="text-body-secondary"><%= blog.description %></small>
-                </div>
-              </a>
-            </li>
-          <% end %>
+            <% @recent_blogs.each do |blog| %>
+              <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
+                  <%= image_tag blog.thumbnail, width: '100px', height: '100px' %>
+                  <div class="col-lg-8">
+                    <h6 class="mb-0"><%= blog.title %></h6>
+                    <small class="text-body-secondary"><%= blog.description %></small>
+                  </div>
+                </a>
+              </li>
+            <% end %>
           </ul>
         </div>
-
       </div>
     </div>
-        </div>
-
+  </div>
 </main>
-
-<div class="container" id="team">
-<h3 class="pb-4 mb-4 fst-italic border-bottom d-flex justify-content-center align-items-center">
-        Core Team
-      </h3>
-      </div>
-      </div>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-      <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-        </div>
-        <br>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-      <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-        </div>
-        <br>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-        <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-      <div class="col d-flex justify-content-center align-items-center">
-          <div class="card shadow-sm">
-            <%= render 'partials/team_card' %>
-          </div>
-        </div>
-        </div>
-        <br>
-    </div>
-<%= render 'partials/footer'%>

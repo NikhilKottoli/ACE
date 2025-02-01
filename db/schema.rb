@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_21_110504) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_31_111717) do
+  create_table "achievements", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "student_name"
+    t.string "category"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -74,6 +84,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_110504) do
     t.string "slogan"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "event_date"
+    t.string "category"
+    t.string "location"
+    t.string "status"
   end
 
   create_table "libraries", force: :cascade do |t|
@@ -84,8 +98,25 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_110504) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "resources", force: :cascade do |t|
+    t.string "title"
+    t.string "category"
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "team_members", force: :cascade do |t|
+    t.string "name"
+    t.string "role"
+    t.string "email"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

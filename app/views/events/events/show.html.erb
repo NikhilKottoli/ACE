@@ -1,0 +1,129 @@
+<style>
+  .event-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    background-color: #000;
+  }
+
+  .event-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+  }
+
+  .event-hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 2rem;
+  }
+
+  .event-meta-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+  }
+
+  .event-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-rsvp {
+    background-color: #0d6efd;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .btn-rsvp:hover {
+    background-color: #0b5ed7;
+    color: white;
+  }
+
+  .btn-learn-more {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .btn-learn-more:hover {
+    background-color: #5c636a;
+    color: white;
+  }
+</style>
+
+<% if @event.present? %>
+  <!-- Hero Section -->
+  <div class="event-hero">
+    <% if @event.thumbnail.attached? %>
+      <%= image_tag url_for(@event.thumbnail), class: "event-hero-image" %>
+    <% else %>
+      <%= image_tag "ace.png", class: "event-hero-image" %>
+    <% end %>
+    
+    <div class="event-hero-content">
+      <h1 class="display-4 text-center mb-4"><%= @event.title %></h1>
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="d-flex align-items-center">
+          <svg class="event-meta-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <%= @event.event_date.strftime("%B %d, %Y") %>
+        </div>
+        <div class="d-flex align-items-center">
+          <svg class="event-meta-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <%= @event.event_date.strftime("%I:%M %p") %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Details Section -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="event-card p-5">
+          <h2 class="h3 mb-4">About This Event</h2>
+          <div class="mb-5">
+            <%= @event.description %>
+          </div>
+          
+          <!-- CTA Buttons -->
+          <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+            <%= link_to 'RSVP Now', '#', class: "btn-rsvp" %>
+            <%= link_to 'Learn More', events_event_path(@event.event_date.year, @event.id), class: "btn-learn-more" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="row min-vh-50 align-items-center justify-content-center">
+      <div class="col-auto">
+        <p class="h4 text-secondary">Sorry, the event could not be found.</p>
+      </div>
+    </div>
+  </div>
+<% end %>

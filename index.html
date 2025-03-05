@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Allow scrolling */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+        img {
+            width: 100vw;
+            object-fit: cover; /* Ensures the image fills its space without distortion */
+            flex: none; /* Prevents images from shrinking */
+        }
+        .full-screen {
+            min-height: 100vh; /* Each image takes at least 100% of the screen height */
+        }
+        .footer {
+            min-height: 10vh; /* Footer takes 10% of the screen height */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="ACE.png" alt="ACE" class="full-screen">
+        <img src="ACE2.png" alt="ACE" class="full-screen">
+        <img src="ACE3.png" alt="ACE" class="full-screen">
+        <img src="ACE4.png" alt="ACE" class="footer">
+    </div>
+</body>
+</html>
